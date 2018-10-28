@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile "org.junit.jupiter:junit-jupiter-engine:5.+"
+}
+
+test {
+    useJUnitPlatform()
+}
