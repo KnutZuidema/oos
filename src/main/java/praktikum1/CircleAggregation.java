@@ -1,3 +1,5 @@
+package praktikum1;
+
 public class CircleAggregation implements Cloneable, HasArea {
     private Point position;
     private int radius;
@@ -40,6 +42,6 @@ public class CircleAggregation implements Cloneable, HasArea {
 
     @Override
     public String toString() {
-        return String.format("CircleAggregation(position=%s, radius=%d)", this.position, this.radius);
+        return String.format("praktikum1.CircleAggregation(position=%s, radius=%d)", this.position, this.radius);
     }
 }

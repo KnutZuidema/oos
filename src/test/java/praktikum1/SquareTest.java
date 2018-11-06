@@ -1,9 +1,9 @@
+package praktikum1;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SquareTest {
     private final int expected1 = 0;
@@ -37,7 +37,7 @@ class SquareTest {
 
     @Test
     void toString1() {
-        assertEquals(String.format("Square(position=Point(%1$d, %1$d), width=%1$d, height=%1$d)", expected1),
+        assertEquals(String.format("praktikum1.Square(position=praktikum1.Point(%1$d, %1$d), width=%1$d, height=%1$d)", expected1),
                 square1.toString());
     }
 }

@@ -1,3 +1,5 @@
+package praktikum1;
+
 public class Circle extends Point {
     protected int radius;
 
@@ -38,6 +40,6 @@ public class Circle extends Point {
 
     @Override
     public String toString() {
-        return String.format("Circle(%d, %d, radius=%d)", this.x, this.y, this.radius);
+        return String.format("praktikum1.Circle(%d, %d, radius=%d)", this.x, this.y, this.radius);
     }
 }

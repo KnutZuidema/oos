@@ -1,3 +1,5 @@
+package praktikum1;
+
 public class Square implements Cloneable, HasArea {
     private Point position;
     private int height, width;
@@ -43,6 +45,6 @@ public class Square implements Cloneable, HasArea {
 
     @Override
     public String toString() {
-        return String.format("Square(position=%s, width=%d, height=%d)", this.position, this.width, this.height);
+        return String.format("praktikum1.Square(position=%s, width=%d, height=%d)", this.position, this.width, this.height);
     }
 }

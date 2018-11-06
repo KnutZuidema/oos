@@ -1,3 +1,5 @@
+package praktikum1;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +36,7 @@ class CircleAggregationTest {
 
     @Test
     void toString1() {
-        assertEquals(String.format("CircleAggregation(position=Point(%1$d, %1$d), radius=%1$d)", expected1),
+        assertEquals(String.format("praktikum1.CircleAggregation(position=praktikum1.Point(%1$d, %1$d), radius=%1$d)", expected1),
                 circle1.toString());
     }
 }

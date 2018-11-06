@@ -1,3 +1,5 @@
+package praktikum1;
+
 public class Point {
     protected int x;
     protected int y;
@@ -55,6 +57,6 @@ public class Point {
 
     @Override
     public String toString() {
-        return String.format("Point(%d, %d)", this.x, this.y);
+        return String.format("praktikum1.Point(%d, %d)", this.x, this.y);
     }
 }

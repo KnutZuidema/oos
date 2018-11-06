@@ -1,3 +1,5 @@
+package praktikum1;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +39,6 @@ class CircleTest {
 
     @Test
     void toString1() {
-        assertEquals(String.format("Circle(%1$d, %1$d, radius=%1$d)", expected1), circle1.toString());
+        assertEquals(String.format("praktikum1.Circle(%1$d, %1$d, radius=%1$d)", expected1), circle1.toString());
     }
 }

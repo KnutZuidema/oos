@@ -1,5 +1,7 @@
+package praktikum1;
+
 public class PascalsTriangle {
-    private static final int triangle_height = 15;
+    private static final int triangle_height = 10;
 
     public static void main(String[] args) {
         int triangle[][] = new int[triangle_height][];

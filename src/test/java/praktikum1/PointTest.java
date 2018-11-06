@@ -1,3 +1,5 @@
+package praktikum1;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -63,6 +65,6 @@ class PointTest {
 
     @Test
     void toString1() {
-        assertEquals(String.format("Point(%1$d, %1$d)", expected1), point1.toString());
+        assertEquals(String.format("praktikum1.Point(%1$d, %1$d)", expected1), point1.toString());
     }
 }
