@@ -1,11 +1,12 @@
 package userManagement;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * User class to store id and password of a user
  */
-public class User {
+public class User implements Serializable {
     private String id;
     private char[] password;
 

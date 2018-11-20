@@ -1,12 +1,13 @@
 package userManagement;
 
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Administrator class for a local user store
  */
-public class UserManagerAdministrator implements UserManager {
+public class UserManagerAdministrator implements UserManager, Serializable {
 
     private List<User> userStore;
 
@@ -15,6 +16,28 @@ public class UserManagerAdministrator implements UserManager {
      */
     public UserManagerAdministrator() {
         this.userStore = new LinkedList<>();
+    }
+
+    /**
+     * Class method to initialize a UserManagerAdministrator from a previously
+     * serialized one.
+     *
+     * @param fileName name of the serialized UserManagerAdministrator
+     * @return UserManagerAdministrator instance
+     * @throws IOException            if the file does not exist,
+     *                                is a directory rather than a regular file,
+     *                                or for some other reason cannot be opened for
+     *                                reading.
+     * @throws ClassNotFoundException if class of a serialized object cannot be
+     *                                found.
+     */
+    public static UserManagerAdministrator deserialize(String fileName) throws IOException, ClassNotFoundException {
+        FileInputStream file_input = new FileInputStream(fileName);
+        ObjectInputStream object_input = new ObjectInputStream(file_input);
+        UserManagerAdministrator userManager = (UserManagerAdministrator) object_input.readObject();
+        object_input.close();
+        file_input.close();
+        return userManager;
     }
 
     /**
@@ -49,5 +72,22 @@ public class UserManagerAdministrator implements UserManager {
      */
     public void removeUser(User user) {
         userStore.removeIf(localUser -> localUser.getId().equals(user.getId()));
+    }
+
+    /**
+     * Serialize the UserAdministrator instance to a file
+     *
+     * @param fileName name of the file
+     * @throws IOException if the file does not exist,
+     *                     is a directory rather than a regular file,
+     *                     or for some other reason cannot be opened for
+     *                     reading.
+     */
+    public void serialize(String fileName) throws IOException {
+        FileOutputStream file_output = new FileOutputStream(fileName);
+        ObjectOutputStream object_output = new ObjectOutputStream(file_output);
+        object_output.writeObject(this);
+        object_output.close();
+        file_output.close();
     }
 }
