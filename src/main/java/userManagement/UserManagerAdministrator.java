@@ -78,10 +78,9 @@ public class UserManagerAdministrator implements UserManager, Serializable {
      * Serialize the UserAdministrator instance to a file
      *
      * @param fileName name of the file
-     * @throws IOException if the file does not exist,
-     *                     is a directory rather than a regular file,
-     *                     or for some other reason cannot be opened for
-     *                     reading.
+     * @throws IOException if the file exists but is a directory
+     *                     rather than a regular file, does not exist but cannot
+     *                     be created, or cannot be opened for any other reason
      */
     public void serialize(String fileName) throws IOException {
         FileOutputStream file_output = new FileOutputStream(fileName);
