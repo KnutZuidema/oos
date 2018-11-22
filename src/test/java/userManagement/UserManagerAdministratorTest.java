@@ -17,6 +17,7 @@ class UserManagerAdministratorTest {
     private final String fileName1 = "userAdmin1.ser";
     private final String fileName2 = "userAdmin2.ser";
     private UserManagerAdministrator userAdmin;
+    private UserManagerAdministrator userAdminPersistent;
     private User user1, user2;
 
     @BeforeEach
@@ -25,9 +26,11 @@ class UserManagerAdministratorTest {
         user1 = new User();
         user2 = new User(id, password);
         try {
+            userAdminPersistent = new UserManagerAdministrator(fileName2);
+            userAdminPersistent.addUser(user1);
             userAdmin.addUser(user1);
             userAdmin.serialize(fileName1);
-        } catch (UserAlreadyExistsException | IOException ignored) {
+        } catch (UserAlreadyExistsException | IOException | ClassNotFoundException ignored) {
         }
     }
 
@@ -43,26 +46,39 @@ class UserManagerAdministratorTest {
     @Test
     void addUser() {
         assertDoesNotThrow(() -> userAdmin.addUser(user2));
+        assertDoesNotThrow(() -> userAdminPersistent.addUser(user2));
         assertThrows(UserAlreadyExistsException.class, () -> userAdmin.addUser(user1));
+        assertThrows(UserAlreadyExistsException.class, () -> userAdminPersistent.addUser(user1));
     }
 
     @Test
     void verifyUser() {
-        assertTrue(userAdmin.verifyUser(user1));
-        assertFalse(userAdmin.verifyUser(user2));
+        try {
+            assertTrue(userAdmin.verifyUser(user1));
+            assertFalse(userAdmin.verifyUser(user2));
+            assertTrue(userAdminPersistent.verifyUser(user1));
+            assertFalse(userAdminPersistent.verifyUser(user2));
+        } catch (IOException | ClassNotFoundException e) {
+            fail();
+        }
     }
 
     @Test
     void removeUser() {
-        userAdmin.removeUser(user1);
-        assertFalse(userAdmin.verifyUser(user1));
+        assertDoesNotThrow(() -> userAdmin.removeUser(user1));
+        assertDoesNotThrow(() -> userAdminPersistent.removeUser(user1));
+        try {
+            assertFalse(userAdmin.verifyUser(user1));
+            assertFalse(userAdminPersistent.verifyUser(user1));
+        } catch (IOException | ClassNotFoundException e) {
+            fail();
+        }
     }
 
     @Test
     void serialize() {
         assertDoesNotThrow(() -> userAdmin.serialize(fileName2));
-        File file = new File(fileName2);
-        assertTrue(file.exists());
+        assertTrue(new File(fileName2).exists());
     }
 
     @Test

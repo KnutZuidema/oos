@@ -9,13 +9,31 @@ import java.util.List;
  */
 public class UserManagerAdministrator implements UserManager, Serializable {
 
+    private String filename = null;
     private List<User> userStore;
 
     /**
-     * default constructor for UserManagerAdministrator
+     * Default constructor for UserManagerAdministrator
+     * Future operations will only be in memory
      */
     public UserManagerAdministrator() {
         this.userStore = new LinkedList<>();
+    }
+
+    /**
+     * Initialize persistent storage of UserManagerAdministrator and set filename of persistent storage.
+     * Future operations will be synchronized with file on disk
+     *
+     * @param filename name of the file on disk
+     * @throws IOException if the file does not exist,
+     *                     is a directory rather than a regular file,
+     *                     or for some other reason cannot be opened for
+     *                     reading.
+     */
+    public UserManagerAdministrator(String filename) throws IOException {
+        this.userStore = new LinkedList<>();
+        this.filename = filename;
+        serialize(filename);
     }
 
     /**
@@ -45,13 +63,28 @@ public class UserManagerAdministrator implements UserManager, Serializable {
      *
      * @param user User instance to be added
      * @throws UserAlreadyExistsException when User with same id already exists in local store
+     *                                    if the file exists but is a directory
+     *                                    rather than a regular file, does not exist but cannot
+     *                                    be created, or cannot be opened for any other reason
+     * @throws IOException                if the file does not exist,
+     *                                    is a directory rather than a regular file,
+     *                                    or for some other reason cannot be opened for
+     *                                    reading.
+     * @throws ClassNotFoundException     if class of a serialized object cannot be
+     *                                    found.
      */
     @Override
-    public void addUser(User user) throws UserAlreadyExistsException {
+    public void addUser(User user) throws UserAlreadyExistsException, IOException, ClassNotFoundException {
+        if (this.filename != null) {
+            this.userStore = deserialize(this.filename).userStore;
+        }
         if (userStore.stream().anyMatch(localUser -> localUser.getId().equals(user.getId()))) {
             throw new UserAlreadyExistsException();
         }
         userStore.add(user);
+        if (this.filename != null) {
+            serialize(this.filename);
+        }
     }
 
     /**
@@ -59,19 +92,41 @@ public class UserManagerAdministrator implements UserManager, Serializable {
      *
      * @param user User to be verified
      * @return true if user exists, false if not
+     * @throws IOException            if the file does not exist,
+     *                                is a directory rather than a regular file,
+     *                                or for some other reason cannot be opened for
+     *                                reading.
+     * @throws ClassNotFoundException if class of a serialized object cannot be
+     *                                found.
      */
     @Override
-    public boolean verifyUser(User user) {
+    public boolean verifyUser(User user) throws IOException, ClassNotFoundException {
+        if (this.filename != null) {
+            this.userStore = deserialize(this.filename).userStore;
+        }
         return userStore.stream().anyMatch(localUser -> localUser.equals(user));
     }
 
     /**
-     * remove User with equal ID from userStore. If User ID does not exist in userStore, it does nothing
+     * remove User with equal ID from userStore. If User ID does not exist in userStore,
+     * it does nothing
      *
      * @param user User to be removed from userStore
+     * @throws IOException            if the file does not exist,
+     *                                is a directory rather than a regular file,
+     *                                or for some other reason cannot be opened for
+     *                                reading
+     * @throws ClassNotFoundException if class of a serialized object cannot be
+     *                                found.
      */
-    public void removeUser(User user) {
+    public void removeUser(User user) throws IOException, ClassNotFoundException {
+        if (this.filename != null) {
+            this.userStore = deserialize(this.filename).userStore;
+        }
         userStore.removeIf(localUser -> localUser.getId().equals(user.getId()));
+        if (this.filename != null) {
+            serialize(this.filename);
+        }
     }
 
     /**
