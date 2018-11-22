@@ -38,6 +38,8 @@ class UserTest {
 
     @Test
     void equals() {
+        assertNotEquals(user1, new Object());
+        assertNotEquals(user1, null);
         assertNotEquals(user1, user2);
         user1 = new User(id1, password1);
         assertEquals(user1, user2);
