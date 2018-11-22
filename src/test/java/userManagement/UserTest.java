@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
     private final String id1 = "id1";
     private final char[] password1 = {'p', 'w', '1'};
+    private final String user1String = "User(id=, password=)";
+    private final String user2String = "User(id=id1, password=pw1)";
     private User user1, user2;
 
     @BeforeEach
@@ -32,8 +34,8 @@ class UserTest {
 
     @Test
     void toString1() {
-        assertEquals("User(id=, password=)", user1.toString());
-        assertEquals("User(id=id1, password=pw1)", user2.toString());
+        assertEquals(user1String, user1.toString());
+        assertEquals(user2String, user2.toString());
     }
 
     @Test
