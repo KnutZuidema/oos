@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<Scene fx:controller="gui.LoginController"
+       fx:id="scene"
+       xmlns="http://javafx.com/javafx"
+       xmlns:fx="http://javafx.com/fxml">
+  <GridPane prefHeight="250"
+            prefWidth="400">
+    <padding>
+      <Insets topRightBottomLeft="20"/>
+    </padding>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES"/>
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints vgrow="SOMETIMES"/>
+      <RowConstraints vgrow="SOMETIMES"/>
+      <RowConstraints vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <Text GridPane.columnIndex="0"
+          GridPane.rowIndex="0"
+          text="User Management">
+      <font>
+        <Font name="System Bold"
+              size="25"/>
+      </font>
+    </Text>
+    <GridPane GridPane.columnIndex="0"
+              GridPane.rowIndex="1">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <Label GridPane.columnIndex="0"
+             GridPane.rowIndex="0"
+             text="User ID"/>
+      <Label GridPane.columnIndex="0"
+             GridPane.rowIndex="1"
+             text="Password"/>
+      <Label GridPane.columnIndex="0"
+             GridPane.rowIndex="2"
+             text="New login"/>
+      <TextField GridPane.columnIndex="1"
+                 GridPane.rowIndex="0"
+                 fx:id="username"/>
+      <PasswordField GridPane.columnIndex="1"
+                     GridPane.rowIndex="1"
+                     fx:id="password"/>
+      <CheckBox GridPane.columnIndex="1"
+                GridPane.rowIndex="2"
+                fx:id="newLogin"
+                onAction="#newLoginChanged"/>
+    </GridPane>
+    <Button GridPane.columnIndex="0"
+            GridPane.rowIndex="2"
+            onAction="#login"
+            text="Login"/>
+  </GridPane>
+</Scene>
