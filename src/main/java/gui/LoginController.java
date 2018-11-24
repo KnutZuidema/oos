@@ -43,4 +43,15 @@ public class LoginController {
             System.exit(0);
         }
     }
+
+    @FXML
+    void mainMenu() {
+        try {
+            FXMLLoader loader = new FXMLLoader(new URL("file:src/main/java/gui/application.fxml"));
+            ((Stage) scene.getWindow()).setScene(loader.load());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+

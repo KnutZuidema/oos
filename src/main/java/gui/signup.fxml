@@ -21,7 +21,6 @@
     <rowConstraints>
       <RowConstraints vgrow="SOMETIMES"/>
       <RowConstraints vgrow="SOMETIMES"/>
-      <RowConstraints vgrow="SOMETIMES"/>
     </rowConstraints>
     <Text GridPane.columnIndex="0"
           GridPane.rowIndex="0"
@@ -38,6 +37,7 @@
         <ColumnConstraints hgrow="SOMETIMES"/>
       </columnConstraints>
       <rowConstraints>
+        <RowConstraints vgrow="SOMETIMES"/>
         <RowConstraints vgrow="SOMETIMES"/>
         <RowConstraints vgrow="SOMETIMES"/>
         <RowConstraints vgrow="SOMETIMES"/>
@@ -60,10 +60,15 @@
       <PasswordField GridPane.columnIndex="1"
                      GridPane.rowIndex="2"
                      fx:id="passwordRepetition"/>
+      <Button GridPane.columnIndex="0"
+              GridPane.rowIndex="3"
+              onAction="#signUp"
+              text="Sign Up"/>
+      <Button GridPane.columnIndex="1"
+              GridPane.halignment="RIGHT"
+              GridPane.rowIndex="3"
+              onAction="#mainMenu"
+              text="Back to main menu"/>
     </GridPane>
-    <Button GridPane.columnIndex="0"
-            GridPane.rowIndex="2"
-            onAction="#signUp"
-            text="Sign Up"/>
   </GridPane>
 </Scene>
