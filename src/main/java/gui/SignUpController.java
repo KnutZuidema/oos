@@ -18,7 +18,8 @@ public class SignUpController extends Controller {
     @FXML
     void signUp() {
         if (!password.getText().equals(passwordRepetition.getText())) {
-            new Alert(Alert.AlertType.ERROR, "Passwords do not match", ButtonType.CANCEL).show();
+            new Alert(Alert.AlertType.ERROR, "Passwords do not match", ButtonType.CLOSE).show();
+            passwordRepetition.setText("");
         } else {
             System.out.println(new User(username.getText(), password.getText().toCharArray()));
             System.exit(0);
