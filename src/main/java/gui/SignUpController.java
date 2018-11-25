@@ -1,10 +1,7 @@
 package gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import userManagement.User;
 
 public class SignUpController extends Controller {
@@ -14,6 +11,8 @@ public class SignUpController extends Controller {
     PasswordField password;
     @FXML
     PasswordField passwordRepetition;
+    @FXML
+    Label passwordWarning;
 
     @FXML
     void signUp() {
@@ -29,5 +28,12 @@ public class SignUpController extends Controller {
     @FXML
     void mainMenu() {
         loadTemplate("file:src/main/java/gui/application.fxml");
+    }
+
+    @FXML
+    void initialize() {
+        passwordRepetition.textProperty().addListener(((observable, oldValue, newValue) -> {
+            passwordWarning.setVisible(!newValue.equals(password.getText()));
+        }));
     }
 }

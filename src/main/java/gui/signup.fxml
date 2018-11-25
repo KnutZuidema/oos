@@ -21,6 +21,7 @@
     <rowConstraints>
       <RowConstraints vgrow="SOMETIMES"/>
       <RowConstraints vgrow="SOMETIMES"/>
+      <RowConstraints vgrow="SOMETIMES"/>
     </rowConstraints>
     <Text GridPane.columnIndex="0"
           GridPane.rowIndex="0"
@@ -60,13 +61,19 @@
       <PasswordField GridPane.columnIndex="1"
                      GridPane.rowIndex="2"
                      fx:id="passwordRepetition"/>
+      <Label GridPane.columnIndex="1"
+             GridPane.rowIndex="3"
+             fx:id="passwordWarning"
+             style="-fx-text-fill: red"
+             text="Passwords do not match"
+             visible="false"/>
       <Button GridPane.columnIndex="0"
-              GridPane.rowIndex="3"
+              GridPane.rowIndex="4"
               onAction="#signUp"
               text="Sign Up"/>
       <Button GridPane.columnIndex="1"
               GridPane.halignment="RIGHT"
-              GridPane.rowIndex="3"
+              GridPane.rowIndex="4"
               onAction="#mainMenu"
               text="Back to main menu"/>
     </GridPane>
