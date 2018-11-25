@@ -22,6 +22,7 @@ public class SignUpController extends Controller {
     @FXML
     void signUp() {
         if (!password.getText().equals(passwordRepetition.getText())) {
+            passwordWarning.setVisible(true);
             shake.playFromStart();
             passwordRepetition.setText("");
         } else {
