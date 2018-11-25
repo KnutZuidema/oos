@@ -19,6 +19,7 @@ public class MainApplication extends Application {
         primaryStage.setScene(loader.load());
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setOnCloseRequest(event -> System.out.println("Exiting application"));
         primaryStage.show();
     }
 }
