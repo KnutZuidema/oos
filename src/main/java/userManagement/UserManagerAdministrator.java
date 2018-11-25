@@ -32,7 +32,11 @@ public class UserManagerAdministrator implements UserManager, Serializable {
      *                     reading.
      */
     public UserManagerAdministrator(String filename) throws IOException {
-        this.userStore = new LinkedList<>();
+        try {
+            this.userStore = deserialize(filename).userStore;
+        } catch (ClassNotFoundException | IOException e) {
+            this.userStore = new LinkedList<>();
+        }
         this.filename = filename;
         serialize(filename);
     }
