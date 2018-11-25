@@ -63,7 +63,7 @@
                      fx:id="passwordRepetition"/>
       <Label GridPane.columnIndex="1"
              GridPane.rowIndex="3"
-             fx:id="passwordWarning"
+             fx:id="warning"
              style="-fx-text-fill: red"
              text="Passwords do not match"
              visible="false"/>

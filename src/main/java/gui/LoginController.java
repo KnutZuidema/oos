@@ -5,6 +5,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import userManagement.User;
+import userManagement.UserManagerAdministrator;
+
+import java.io.IOException;
 
 public class LoginController extends Controller {
     @FXML
@@ -14,11 +17,19 @@ public class LoginController extends Controller {
     @FXML
     CheckBox newLogin;
     private boolean isNewLogin;
+    UserManagerAdministrator userAdmin;
 
     @FXML
-    void newLoginChanged() {
-        this.isNewLogin = newLogin.isSelected();
-        System.out.println(isNewLogin);
+    void initialize() {
+        newLogin.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            System.out.println(newValue);
+            isNewLogin = newValue;
+        }));
+        try {
+            userAdmin = new UserManagerAdministrator("users.ser");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -28,7 +39,15 @@ public class LoginController extends Controller {
         } else {
             User user = new User(username.getText(), password.getText().toCharArray());
             System.out.println(user);
-            System.exit(0);
+            try {
+                if (userAdmin.verifyUser(user)) {
+                    System.out.println("Logged in successfully");
+                } else {
+                    System.out.println("Invalid credentials");
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 

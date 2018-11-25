@@ -7,6 +7,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import userManagement.User;
+import userManagement.UserAlreadyExistsException;
+import userManagement.UserManagerAdministrator;
+
+import java.io.IOException;
 
 public class SignUpController extends Controller {
     @FXML
@@ -16,18 +20,28 @@ public class SignUpController extends Controller {
     @FXML
     PasswordField passwordRepetition;
     @FXML
-    Label passwordWarning;
+    Label warning;
     TranslateTransition shake;
+    UserManagerAdministrator userAdmin;
 
     @FXML
     void signUp() {
         if (!password.getText().equals(passwordRepetition.getText())) {
-            passwordWarning.setVisible(true);
+            warning.setVisible(true);
             shake.playFromStart();
             passwordRepetition.setText("");
         } else {
-            System.out.println(new User(username.getText(), password.getText().toCharArray()));
-            System.exit(0);
+            User user = new User(username.getText(), password.getText().toCharArray());
+            try {
+                userAdmin.addUser(user);
+                System.out.println("Added " + user);
+            } catch (UserAlreadyExistsException e) {
+                warning.setText("User already exists");
+                warning.setVisible(true);
+                shake.playFromStart();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -38,13 +52,18 @@ public class SignUpController extends Controller {
 
     @FXML
     void initialize() {
-        shake = new TranslateTransition(new Duration(50), passwordWarning);
+        shake = new TranslateTransition(new Duration(50), warning);
         shake.setFromX(0);
         shake.setByX(10);
         shake.setCycleCount(6);
         shake.setAutoReverse(true);
         passwordRepetition.textProperty().addListener(((observable, oldValue, newValue) -> {
-            passwordWarning.setVisible(!newValue.equals(password.getText()));
+            warning.setVisible(!newValue.equals(password.getText()));
         }));
+        try {
+            userAdmin = new UserManagerAdministrator("users.ser");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
