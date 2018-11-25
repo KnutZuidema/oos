@@ -8,6 +8,7 @@ import java.util.List;
  * Administrator class for a local user store
  */
 public class UserManagerAdministrator implements UserManager, Serializable {
+    public final static long serialVersionUID = 0xFFF;
 
     private String filename = null;
     private List<User> userStore;

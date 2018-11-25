@@ -7,6 +7,7 @@ import java.util.Arrays;
  * User class to store id and password of a user
  */
 public class User implements Serializable {
+    public final static long serialVersionUID = 0xFF;
     private String id;
     private char[] password;
 
