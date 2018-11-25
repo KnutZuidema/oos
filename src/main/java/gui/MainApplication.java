@@ -3,6 +3,7 @@ package gui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 
@@ -17,6 +18,7 @@ public class MainApplication extends Application {
         primaryStage.setTitle("User Management");
         primaryStage.setScene(loader.load());
         primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.show();
     }
 }

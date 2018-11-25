@@ -18,3 +18,5 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+mainClassName = 'gui.MainApplication'
