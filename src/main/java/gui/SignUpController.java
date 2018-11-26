@@ -35,6 +35,7 @@ public class SignUpController extends Controller {
             try {
                 userAdmin.addUser(user);
                 System.out.println("Added " + user);
+                mainMenu();
             } catch (UserAlreadyExistsException e) {
                 warning.setText("User already exists");
                 warning.setVisible(true);

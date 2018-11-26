@@ -42,6 +42,7 @@ public class LoginController extends Controller {
             try {
                 if (userAdmin.verifyUser(user)) {
                     System.out.println("Logged in successfully");
+                    mainMenu();
                 } else {
                     System.out.println("Invalid credentials");
                 }
