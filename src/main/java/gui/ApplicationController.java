@@ -11,11 +11,11 @@ public class ApplicationController extends Controller {
 
     @FXML
     void login() {
-        loadTemplate("file:src/main/java/gui/login.fxml");
+        loadTemplate("file:src/main/resources/login.fxml");
     }
 
     @FXML
     void signUp() {
-        loadTemplate("file:src/main/java/gui/signup.fxml");
+        loadTemplate("file:src/main/resources/signup.fxml");
     }
 }

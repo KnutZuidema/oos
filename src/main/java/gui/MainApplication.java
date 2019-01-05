@@ -14,7 +14,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(new URL("file:src/main/java/gui/application.fxml"));
+        FXMLLoader loader = new FXMLLoader(new URL("file:src/main/resources/application.fxml"));
         primaryStage.setTitle("User Management");
         primaryStage.setScene(loader.load());
         primaryStage.setResizable(false);

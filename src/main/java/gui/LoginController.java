@@ -35,7 +35,7 @@ public class LoginController extends Controller {
     @FXML
     void login() {
         if (isNewLogin) {
-            loadTemplate("file:src/main/java/gui/signup.fxml");
+            loadTemplate("file:src/main/resources/signup.fxml");
         } else {
             User user = new User(username.getText(), password.getText().toCharArray());
             System.out.println(user);
@@ -54,7 +54,7 @@ public class LoginController extends Controller {
 
     @FXML
     void mainMenu() {
-        loadTemplate("file:src/main/java/gui/application.fxml");
+        loadTemplate("file:src/main/resources/application.fxml");
     }
 }
 

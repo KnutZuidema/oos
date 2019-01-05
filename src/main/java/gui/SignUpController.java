@@ -48,7 +48,7 @@ public class SignUpController extends Controller {
 
     @FXML
     void mainMenu() {
-        loadTemplate("file:src/main/java/gui/application.fxml");
+        loadTemplate("file:src/main/resources/application.fxml");
     }
 
     @FXML
