@@ -1,7 +1,5 @@
 package userManagement;
 
-import java.io.IOException;
-
 /**
  * Interface for basic user management operations
  */
