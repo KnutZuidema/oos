@@ -5,7 +5,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import userManagement.User;
-import userManagement.UserManagerAdministrator;
 
 import java.io.IOException;
 
@@ -17,7 +16,6 @@ public class LoginController extends WarningController {
     @FXML
     CheckBox newLogin;
     private boolean isNewLogin;
-    UserManagerAdministrator userAdmin;
 
     @FXML
     void initialize() {
@@ -26,11 +24,6 @@ public class LoginController extends WarningController {
             System.out.println(newValue);
             isNewLogin = newValue;
         }));
-        try {
-            userAdmin = new UserManagerAdministrator("users.ser");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML
