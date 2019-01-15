@@ -3,6 +3,7 @@ package gui;
 import javafx.fxml.FXML;
 
 public class ApplicationController extends Controller {
+
     @FXML
     void exit() {
         System.out.println("exiting application");

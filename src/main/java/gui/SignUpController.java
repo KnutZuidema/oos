@@ -15,6 +15,7 @@ public class SignUpController extends WarningController {
     PasswordField password;
     @FXML
     PasswordField passwordRepetition;
+
     @FXML
     void initialize() {
         super.initialize();
