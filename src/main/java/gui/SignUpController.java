@@ -1,14 +1,10 @@
 package gui;
 
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 import userManagement.User;
 import userManagement.UserAlreadyExistsException;
-import userManagement.UserManagerAdministrator;
 
 import java.io.IOException;
 
@@ -20,9 +16,12 @@ public class SignUpController extends WarningController {
     @FXML
     PasswordField passwordRepetition;
     @FXML
-    Label warning;
-    TranslateTransition shake;
-    UserManagerAdministrator userAdmin;
+    void initialize() {
+        super.initialize();
+        passwordRepetition.textProperty().addListener(((observable, oldValue, newValue) -> {
+            warning.setVisible(!newValue.equals(password.getText()));
+        }));
+    }
 
     @FXML
     void signUp() {
@@ -33,15 +32,12 @@ public class SignUpController extends WarningController {
         } else {
             User user = new User(username.getText(), password.getText().toCharArray());
             try {
-                userAdmin.addUser(user);
-                System.out.println("Added " + user);
-                mainMenu();
+                mainApplication.getUserAdmin().addUser(user);
+                displaySuccess("User has been added to database");
             } catch (UserAlreadyExistsException e) {
-                warning.setText("User already exists");
-                warning.setVisible(true);
-                shake.playFromStart();
+                shakeError("User already exists");
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                shakeError("Could not access database");
             }
         }
     }
