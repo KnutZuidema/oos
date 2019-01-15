@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserManagerAdministratorTest {
     private final String id = "id";
     private final char[] password = {'p', 'w'};
-    private final String fileName1 = "userAdmin1.ser";
-    private final String fileName2 = "userAdmin2.ser";
+    private final String fileName1 = "userAdmin1";
+    private final String fileName2 = "userAdmin2";
     private UserManagerAdministrator userAdmin;
     private UserManagerAdministrator userAdminPersistent;
     private User user1, user2;
@@ -37,8 +37,8 @@ class UserManagerAdministratorTest {
     @AfterEach
     void tearDown() {
         try {
-            Files.deleteIfExists(Paths.get(fileName1));
-            Files.deleteIfExists(Paths.get(fileName2));
+            Files.deleteIfExists(Paths.get(fileName1 + ".ser"));
+            Files.deleteIfExists(Paths.get(fileName2 + ".ser"));
         } catch (IOException ignored) {
         }
     }
