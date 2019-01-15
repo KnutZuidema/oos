@@ -19,4 +19,4 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'gui.MainApplication'
+mainClassName = 'remote.Client'
