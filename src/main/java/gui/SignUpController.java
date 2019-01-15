@@ -12,7 +12,7 @@ import userManagement.UserManagerAdministrator;
 
 import java.io.IOException;
 
-public class SignUpController extends Controller {
+public class SignUpController extends WarningController {
     @FXML
     TextField username;
     @FXML
@@ -49,22 +49,5 @@ public class SignUpController extends Controller {
     @FXML
     void mainMenu() {
         loadTemplate("file:src/main/resources/application.fxml");
-    }
-
-    @FXML
-    void initialize() {
-        shake = new TranslateTransition(new Duration(50), warning);
-        shake.setFromX(0);
-        shake.setByX(10);
-        shake.setCycleCount(6);
-        shake.setAutoReverse(true);
-        passwordRepetition.textProperty().addListener(((observable, oldValue, newValue) -> {
-            warning.setVisible(!newValue.equals(password.getText()));
-        }));
-        try {
-            userAdmin = new UserManagerAdministrator("users.ser");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

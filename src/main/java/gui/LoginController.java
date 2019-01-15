@@ -9,7 +9,7 @@ import userManagement.UserManagerAdministrator;
 
 import java.io.IOException;
 
-public class LoginController extends Controller {
+public class LoginController extends WarningController {
     @FXML
     TextField username;
     @FXML
@@ -21,6 +21,7 @@ public class LoginController extends Controller {
 
     @FXML
     void initialize() {
+        super.initialize();
         newLogin.selectedProperty().addListener(((observable, oldValue, newValue) -> {
             System.out.println(newValue);
             isNewLogin = newValue;
@@ -40,14 +41,13 @@ public class LoginController extends Controller {
             User user = new User(username.getText(), password.getText().toCharArray());
             System.out.println(user);
             try {
-                if (userAdmin.verifyUser(user)) {
-                    System.out.println("Logged in successfully");
-                    mainMenu();
+                if (mainApplication.getUserAdmin().verifyUser(user)) {
+                    displaySuccess("Logged in successfully");
                 } else {
-                    System.out.println("Invalid credentials");
+                    shakeError("Invalid credentials");
                 }
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                shakeError("Could not access database");
             }
         }
     }
